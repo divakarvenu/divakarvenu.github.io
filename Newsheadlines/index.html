@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="css/foundation.min.css">
+	<link rel="stylesheet" href="css/style.css">
+	<title>The greatest news app ever</title>
+</head>
+<body>
+	<div class="container" id="app">
+		<section class="callout secondary">
+			<h5 class="text-center">Choose Source</h5>
+			<form>
+				<div class="row">
+					<div class="large-4 large-centered columns">
+						<select v-model="section" @change="getPosts(section)">
+							<option v-for="section in sections" :value="section">{{ section }}</option>
+						</select>
+					</div>
+				</div>
+			</form>
+		</section>
+
+		<h5 class="text-center uppercase" v-if="!loading">{{ title }}</b></h5>
+		<div v-if="loading" class="loader"><img src="img/loader.gif" alt="loader"></div>
+
+		<news-list v-if="!loading" :results="results"></news-list>
+
+	</div>
+	<div class="credits">
+		<p class="attribute">Powered by <a href="https://newsapi.org/">NewsMap</p>
+	</div>
+	<script src="lib/axio.min.js"></script>
+	<script src="lib/vue.js"></script>
+	<script src="config.js"></script>
+	<script src="app.js"></script>
+</body>
+</html>
